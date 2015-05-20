@@ -1,6 +1,7 @@
 package com.bjm904.feyMod;
 
 import com.bjm904.feyMod.init.ModBlocks;
+import com.bjm904.feyMod.init.ModFluids;
 import com.bjm904.feyMod.init.ModItems;
 import com.bjm904.feyMod.init.ModTools;
 import com.bjm904.feyMod.crafting.Recipies;
@@ -25,6 +26,7 @@ public class feyMod {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		ModFluids.init();
 		ModItems.init();
 		ModTools.init();
 		ModBlocks.init();
