@@ -1,0 +1,11 @@
+item.lectross.name=Lectross
+
+item.maquahuitlWood.name=Wood Maquahuitl
+item.maquahuitlStone.name=Stone Maquahuitl
+item.maquahuitlIron.name=Iron Maquahuitl
+item.maquahuitlGold.name=Gold Maquahuitl
+item.maquahuitlDiamond.name=Diamond Maquahuitl
+
+tile.lectrossOre.name=Lectross Ore
+
+itemGroup.tabFeyMod=Fey Mod

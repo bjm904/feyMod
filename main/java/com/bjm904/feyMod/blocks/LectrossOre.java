@@ -1,6 +1,7 @@
 package com.bjm904.feyMod.blocks;
 
 import com.bjm904.feyMod.help.Reference;
+import com.bjm904.feyMod.tabs.ModTabs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,6 +12,10 @@ public class LectrossOre extends Block{
     	super(Material.rock);
     	setBlockName("lectrossOre");
     	setBlockTextureName(Reference.MODID+":"+getUnlocalizedName().substring(5));
-    	setCreativeTab(CreativeTabs.tabBlock);
+    	setCreativeTab(ModTabs.tabFeyMod);
+    	setStepSound(soundTypeStone);
+		setHardness(2.5F);
+		setResistance(10.0F);
+		setHarvestLevel("pickaxe", 3);
     }
 }
