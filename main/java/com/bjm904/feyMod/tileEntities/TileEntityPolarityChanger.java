@@ -1,6 +1,8 @@
 package com.bjm904.feyMod.tileEntities;
 
 import com.bjm904.feyMod.blocks.PolarityChanger;
+import com.bjm904.feyMod.crafting.PolarityChangerRecipies;
+import com.bjm904.feyMod.init.ModItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +16,6 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
@@ -109,8 +110,7 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
     /**
      * Returns the name of the inventory
      */
-    public String getInventoryName()
-    {
+    public String getInventoryName(){
         return this.hasCustomInventoryName() ? this.furnaceName : "container.polarityChanger";
     }
 
@@ -202,39 +202,36 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
      * Furnace isBurning
      */
     public boolean isBurning(){
-        return this.furnaceBurnTime > 0;
+        return this.furnaceCookTime > 0;
     }
 
-    public void updateEntity()
-    {
+    public void updateEntity(){
         boolean flag = this.furnaceBurnTime > 0;
         boolean flag1 = false;
 
-        if (this.furnaceBurnTime > 0){
-            --this.furnaceBurnTime;
-        }
-
         if (!this.worldObj.isRemote){
+        	if (this.polarityChangerItemStacks[1] != null && this.furnaceBurnTime < 50){
+                --this.polarityChangerItemStacks[1].stackSize;
+                ++this.furnaceBurnTime;
+                if (this.polarityChangerItemStacks[1].stackSize == 0){
+                    this.polarityChangerItemStacks[1] = polarityChangerItemStacks[1].getItem().getContainerItem(polarityChangerItemStacks[1]);
+                }
+            }
+        	
             if (this.furnaceBurnTime != 0 || this.polarityChangerItemStacks[1] != null && this.polarityChangerItemStacks[0] != null){
                 if (this.furnaceBurnTime == 0 && this.canSmelt()){
-                    this.currentItemBurnTime = this.furnaceBurnTime = getItemBurnTime(this.polarityChangerItemStacks[1]);
+                    this.currentItemBurnTime = getItemBurnTime(this.polarityChangerItemStacks[1]);
 
                     if (this.furnaceBurnTime > 0){
                         flag1 = true;
-
-                        if (this.polarityChangerItemStacks[1] != null){
-                            --this.polarityChangerItemStacks[1].stackSize;
-
-                            if (this.polarityChangerItemStacks[1].stackSize == 0){
-                                this.polarityChangerItemStacks[1] = polarityChangerItemStacks[1].getItem().getContainerItem(polarityChangerItemStacks[1]);
-                            }
-                        }
                     }
                 }
 
-                if (this.isBurning() && this.canSmelt()){
+                if (this.furnaceBurnTime>0 && this.canSmelt()){
                     ++this.furnaceCookTime;
-
+                    if ((furnaceCookTime==0 || furnaceCookTime%40==0) && this.furnaceBurnTime > 0){
+                        this.furnaceBurnTime-=1;
+                    }
                     if (this.furnaceCookTime == 200){
                         this.furnaceCookTime = 0;
                         this.smeltItem();
@@ -247,7 +244,7 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
 
             if (flag != this.furnaceBurnTime > 0){
                 flag1 = true;
-                PolarityChanger.updateBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                PolarityChanger.updateBlockState(this.isBurning(), this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
@@ -263,7 +260,7 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
         if (this.polarityChangerItemStacks[0] == null){
             return false;
         } else{
-            ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.polarityChangerItemStacks[0]);
+            ItemStack itemstack = PolarityChangerRecipies.smelting().getSmeltingResult(this.polarityChangerItemStacks[0]);
             if (itemstack == null) return false;
             if (this.polarityChangerItemStacks[2] == null) return true;
             if (!this.polarityChangerItemStacks[2].isItemEqual(itemstack)) return false;
@@ -277,7 +274,7 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
      */
     public void smeltItem(){
         if (this.canSmelt()){
-            ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.polarityChangerItemStacks[0]);
+            ItemStack itemstack = PolarityChangerRecipies.smelting().getSmeltingResult(this.polarityChangerItemStacks[0]);
 
             if (this.polarityChangerItemStacks[2] == null){
                 this.polarityChangerItemStacks[2] = itemstack.copy();
@@ -290,6 +287,7 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
             if (this.polarityChangerItemStacks[0].stackSize <= 0){
                 this.polarityChangerItemStacks[0] = null;
             }
+            
         }
     }
 
@@ -303,7 +301,7 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
         } else{
             Item item = itemstack.getItem();
 
-            if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){
+            /*if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){//Use this if you need to burn blocks
                 Block block = Block.getBlockFromItem(item);
 
                 if (block == Blocks.wooden_slab){
@@ -317,17 +315,11 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
                 if (block == Blocks.coal_block){
                     return 16000;
                 }
-            }
+            }*/
 
-            if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
-            if (item == Items.stick) return 100;
-            if (item == Items.coal) return 1600;
-            if (item == Items.lava_bucket) return 20000;
-            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
-            if (item == Items.blaze_rod) return 2400;
-            return GameRegistry.getFuelValue(itemstack);
+            //if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;//Use if you want all of a type
+            if (item == ModItems.lectross) return 1;
+            return 0;
         }
     }
 

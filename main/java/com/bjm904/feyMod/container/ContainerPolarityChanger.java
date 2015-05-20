@@ -1,5 +1,6 @@
 package com.bjm904.feyMod.container;
 
+import com.bjm904.feyMod.crafting.PolarityChangerRecipies;
 import com.bjm904.feyMod.tileEntities.TileEntityPolarityChanger;
 
 import cpw.mods.fml.relauncher.Side;
@@ -11,7 +12,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class ContainerPolarityChanger extends Container{
 	
@@ -102,7 +102,7 @@ public class ContainerPolarityChanger extends Container{
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			}else if(par2 != 1 && par2 != 0){
-				if(FurnaceRecipes.smelting().getSmeltingResult(itemstack1) != null){
+				if(PolarityChangerRecipies.smelting().getSmeltingResult(itemstack1) != null){
 					if(!this.mergeItemStack(itemstack1, 0, 1, false)){
 						return null;
 					}

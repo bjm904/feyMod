@@ -41,10 +41,61 @@ public class GuiPolarityChanger extends GuiContainer{
 	        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 	        int i1;
 
-	        if (this.tileFurnace.isBurning())
-	        {
-	            i1 = this.tileFurnace.getBurnTimeRemainingScaled(12);
-	            this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+	        if (this.tileFurnace.isBurning()){
+	           // i1 = this.tileFurnace.getBurnTimeRemainingScaled(32);
+	           // this.drawTexturedModalRect(k + 21, l + 35 + 31 - i1, 176, 31 + 31 - i1, 16, i1 + 2);
+	        }
+	        //int amt=tileFurnace.getBurnTimeRemainingScaled(51);
+	        int amt=tileFurnace.furnaceBurnTime;
+	        if(amt>0){
+		        for(int i = 0; i < amt; ++i){
+		        	int row=0;
+		        	int rem=i;
+		        	if(i>=5){
+		        		row=1;
+		        		rem=i-5;
+		        	}
+		        	if(i>=10){
+		        		row=2;
+		        		rem=i-10;
+		        	}
+		        	if(i>=15){
+		        		row=3;
+		        		rem=i-15;
+		        	}
+		        	if(i>=20){
+		        		row=4;
+		        		rem=i-20;
+		        	}
+		        	if(i>=25){
+		        		row=5;
+		        		rem=i-25;
+		        	}
+		        	if(i>=30){
+		        		row=6;
+		        		rem=i-30;
+		        	}
+		        	if(i>=35){
+		        		row=7;
+		        		rem=i-35;
+		        	}
+		        	if(i>=40){
+		        		row=8;
+		        		rem=i-40;
+		        	}
+		        	if(i>=45){
+		        		row=9;
+		        		rem=i-45;
+		        	}
+		        	
+		        	int col=4;
+		        	if(rem==0) col=4;
+		        	if(rem==1) col=3;
+		        	if(rem==2) col=2;
+		        	if(rem==3) col=1;
+		        	if(rem==4) col=0;
+		        	this.drawTexturedModalRect(k + 21 + (col*3+1), l + 35 + 31 - (row*3+3), 177, 32, 2, 2);
+		        }
 	        }
 
 	        i1 = this.tileFurnace.getCookProgressScaled(24);
