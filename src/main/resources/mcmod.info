@@ -1,0 +1,16 @@
+[
+{
+  "modid": "feyMod",
+  "name": "Fey Mod",
+  "description": "Fey Creative Mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["bjm904","Only I"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
