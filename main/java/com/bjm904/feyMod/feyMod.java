@@ -35,7 +35,7 @@ public class feyMod {
 	@Mod.EventHandler
 	public void Init(FMLInitializationEvent event)
 	{
-
+		proxy.registerNetworkStuff();
 	}
 	
 	@Mod.EventHandler

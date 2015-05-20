@@ -22,8 +22,8 @@ public class ContainerPolarityChanger extends Container{
 	
 	public ContainerPolarityChanger(InventoryPlayer player, TileEntityPolarityChanger tileEntityFurnace){
 		this.tileFurnace = tileEntityFurnace;
-		this.addSlotToContainer(new Slot(tileEntityFurnace, 0, 56, 17));
-		this.addSlotToContainer(new Slot(tileEntityFurnace, 1, 56, 53));
+		this.addSlotToContainer(new Slot(tileEntityFurnace, 0, 56, 35));
+		this.addSlotToContainer(new Slot(tileEntityFurnace, 1, 21, 13));
 		this.addSlotToContainer(new SlotFurnace(player.player, tileEntityFurnace, 2, 116, 35));
 		int i;
 		

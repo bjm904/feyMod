@@ -1,4 +1,6 @@
 item.lectross.name=Lectross
+item.solsteim.name=Solsteim
+item.lunar.name=Lunar
 
 item.maquahuitlWood.name=Wood Maquahuitl
 item.maquahuitlStone.name=Stone Maquahuitl
@@ -8,5 +10,7 @@ item.maquahuitlDiamond.name=Diamond Maquahuitl
 
 tile.lectrossOre.name=Lectross Ore
 tile.polarityChanger.name=Polarity Changer
+
+container.polarityChanger=Polarity Changer
 
 itemGroup.tabFeyMod=Fey Mod

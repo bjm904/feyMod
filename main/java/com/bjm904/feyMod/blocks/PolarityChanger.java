@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PolarityChanger extends Block{
+public class PolarityChanger extends BlockContainer{
 	
 	private final Random random = new Random();
 	private final boolean isOn2;
@@ -142,7 +142,7 @@ public class PolarityChanger extends Block{
 	 * Returns a new instance of a block's tile entity class. Called on placing
 	 * the block.
 	 */
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+	public TileEntity createNewTileEntity(World world, int par2) {
 		return new TileEntityPolarityChanger();
 	}
 
