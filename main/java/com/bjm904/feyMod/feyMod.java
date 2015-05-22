@@ -1,11 +1,13 @@
 package com.bjm904.feyMod;
 
+import net.minecraftforge.fluids.Fluid;
+
+import com.bjm904.feyMod.crafting.Recipies;
+import com.bjm904.feyMod.help.Reference;
 import com.bjm904.feyMod.init.ModBlocks;
 import com.bjm904.feyMod.init.ModFluids;
 import com.bjm904.feyMod.init.ModItems;
 import com.bjm904.feyMod.init.ModTools;
-import com.bjm904.feyMod.crafting.Recipies;
-import com.bjm904.feyMod.help.Reference;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -22,6 +24,8 @@ public class feyMod {
 	
 	@Instance(Reference.MODID)
 	public static feyMod modInstance;
+	
+	public static Fluid specialWater;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)

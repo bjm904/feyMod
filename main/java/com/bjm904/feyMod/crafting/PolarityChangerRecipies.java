@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import com.bjm904.feyMod.init.ModItems;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -28,6 +29,10 @@ public class PolarityChangerRecipies{
         //this.addRecipie(Blocks.sand, new ItemStack(Blocks.glass), 0.1F); //Use for blocks
         this.addLists(ModItems.solsteim, new ItemStack(ModItems.lunar), 0.35F);
         this.addLists(ModItems.lunar, new ItemStack(ModItems.solsteim), 0.35F);
+        this.putLists(new ItemStack(Items.dye, 1, 1), new ItemStack(Items.dye, 1, 11), 0.35F);
+        this.putLists(new ItemStack(Items.dye, 1, 11), new ItemStack(Items.dye, 1, 1), 0.35F);
+        this.putLists(new ItemStack(Items.dye, 1, 0), new ItemStack(Items.dye, 1, 15), 0.35F);
+        this.putLists(new ItemStack(Items.dye, 1, 15), new ItemStack(Items.dye, 1, 0), 0.35F);
     }
 
     public void addRecipie(Block block, ItemStack itemstack, float experience)

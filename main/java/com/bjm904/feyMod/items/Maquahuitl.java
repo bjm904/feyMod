@@ -20,7 +20,7 @@ public class Maquahuitl extends ItemSword{
 	public Maquahuitl(ToolMaterial EnumToolMaterial) {
 		super(EnumToolMaterial);
 		toolMaterial = EnumToolMaterial;
-		this.field_150934_a = 10.0F + toolMaterial.getDamageVsEntity();
+		this.field_150934_a = 12.0F + toolMaterial.getDamageVsEntity();
 		setCreativeTab(ModTabs.tabFeyMod);
 	}
 	

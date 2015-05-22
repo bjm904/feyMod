@@ -211,8 +211,12 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
 
         if (!this.worldObj.isRemote){
         	if (this.polarityChangerItemStacks[1] != null && this.furnaceBurnTime < 50){
-                --this.polarityChangerItemStacks[1].stackSize;
-                ++this.furnaceBurnTime;
+        		int burn = getItemBurnTime(polarityChangerItemStacks[1]);
+        		if(burn>0){
+	        		if(this.polarityChangerItemStacks[1].getItem()==Items.blaze_rod) this.polarityChangerItemStacks[1].stackSize=this.polarityChangerItemStacks[1].stackSize-5;
+	        		else --this.polarityChangerItemStacks[1].stackSize;
+	                this.furnaceBurnTime+=burn;
+        		}
                 if (this.polarityChangerItemStacks[1].stackSize == 0){
                     this.polarityChangerItemStacks[1] = polarityChangerItemStacks[1].getItem().getContainerItem(polarityChangerItemStacks[1]);
                 }
@@ -300,7 +304,6 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
             return 0;
         } else{
             Item item = itemstack.getItem();
-
             /*if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){//Use this if you need to burn blocks
                 Block block = Block.getBlockFromItem(item);
 
@@ -319,6 +322,10 @@ public class TileEntityPolarityChanger extends TileEntity implements ISidedInven
 
             //if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;//Use if you want all of a type
             if (item == ModItems.lectross) return 1;
+            
+            if (item == Items.blaze_rod){
+            	if(itemstack.stackSize>4) return 1;
+            }
             return 0;
         }
     }

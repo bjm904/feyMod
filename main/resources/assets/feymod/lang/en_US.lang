@@ -9,7 +9,10 @@ item.maquahuitlGold.name=Gold Maquahuitl
 item.maquahuitlDiamond.name=Diamond Maquahuitl
 
 tile.lectrossOre.name=Lectross Ore
+tile.obsidianDiamondOre.name=Diamond Obsidian Ore
+tile.obsidianLectrossOre.name=Lectross Obsidian Ore
 tile.polarityChanger.name=Polarity Changer
+tile.specialwater.name=Special Water
 
 container.polarityChanger=Polarity Changer
 
