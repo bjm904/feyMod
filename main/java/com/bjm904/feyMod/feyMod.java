@@ -3,9 +3,11 @@ package com.bjm904.feyMod;
 import net.minecraftforge.fluids.Fluid;
 
 import com.bjm904.feyMod.crafting.Recipies;
+import com.bjm904.feyMod.gen.GenOre;
 import com.bjm904.feyMod.help.Reference;
 import com.bjm904.feyMod.init.ModBlocks;
 import com.bjm904.feyMod.init.ModFluids;
+import com.bjm904.feyMod.init.ModGen;
 import com.bjm904.feyMod.init.ModItems;
 import com.bjm904.feyMod.init.ModTools;
 
@@ -27,6 +29,8 @@ public class feyMod {
 	
 	public static Fluid specialWater;
 	
+	public static GenOre genore = new GenOre();
+	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -35,6 +39,7 @@ public class feyMod {
 		ModTools.init();
 		ModBlocks.init();
 		Recipies.init();
+		ModGen.init();
 		proxy.registerTileEntites();
 	}
 	
