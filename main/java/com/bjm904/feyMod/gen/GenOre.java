@@ -34,7 +34,7 @@ public class GenOre implements IWorldGenerator {
 	}
 
 	public void generateInOverworld(World world, Random random, int x, int z) {
-		for(int i=0; i<16; i++) { //How many veins spawn per chunk
+		for(int i=0; i<32; i++) { //How many veins spawn per chunk
 			int xcoord = x + random.nextInt(16); //Sets random coords for the x axis
 			int ycoord =  random.nextInt(256); //Sets random coords for the y axis
 			int zcoord = z + random.nextInt(16); //Sets random coords for the z axis 
