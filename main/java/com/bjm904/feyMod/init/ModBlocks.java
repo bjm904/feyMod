@@ -10,6 +10,7 @@ import com.bjm904.feyMod.help.RegisterHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class ModBlocks {
 	public static Block lectrossOre = new LectrossOre();;
@@ -20,6 +21,7 @@ public class ModBlocks {
 	public static Block obsidianLectrossOre = new ObsidianOre(ModItems.lectross, "obsidianLectrossOre");
     public static void init(){
     	RegisterHelper.registerBlock(lectrossOre);
+    	OreDictionary.registerOre("lectrossOre", lectrossOre);
     	RegisterHelper.registerBlock(polarityChanger);
     	RegisterHelper.registerBlock(polarityChangerOn);
     	RegisterHelper.registerBlock(specialWaterBlock);
